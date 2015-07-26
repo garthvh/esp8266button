@@ -1,5 +1,5 @@
 # esp8266button
-An IoT Button using an Adafruit Huzzah, arcade button and the IFTTT Maker Channel.  Posts JSON data to IFTTT when the arcade button is pressed.
+An IoT Button using an Adafruit Huzzah, arcade button and the IFTTT Maker Channel.  Posts JSON data to IFTTT Maker Channel event when the arcade button is pressed.
 
 ## Setup
 Requires an arduino ide version > 1.6.4
@@ -16,6 +16,8 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 * Female Jumper wires
 
 ## Enclosure
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Enclosure Assembly")
+
 ![Customized Project Enclosure](http://garthvh.com/assets/img/esp8266/button_enclosure_green.jpg "Customized Project Enclosure")
 
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:941755)
