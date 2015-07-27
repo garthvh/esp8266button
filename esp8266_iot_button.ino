@@ -1,10 +1,12 @@
 
-/*------------------------------------------------------------------------
-  Simple IoT button using the If This Then That(IFTTT) Maker Channel
-  Using an Adafruit Huzzah ESP8266, a standard RGB LCD and an arcade Button
-  While attempting to connect the specified SSID the LCD flashes red,
-  when connected the led remains green, while data is sending the led turns blue.
-  ------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------
+  Simple IoT button using the If This Then That(IFTTT) Maker Channel, Adafruit
+  Huzzah ESP8266, a standard RGB LCD and a push button.
+
+  While attempting to connect to the specified SSID the LCD flashes red,
+  when connected the led remains green, while data is sending the led turns
+  blue, when done it turns back to green.
+  ----------------------------------------------------------------------------*/
 
 #include <ESP8266WiFi.h>
 
@@ -14,6 +16,13 @@
 const char WIFI_SSID[] = "YOUR_SSID";
 const char WIFI_PSK[] = "YOUR_PASSWORD";
 
+///////////////////////
+// IFTTT Definitions //
+///////////////////////
+const char* IFTTT_URL= "maker.ifttt.com";
+const char* IFTTT_KEY= "YOUR IFTTT_KEY";
+const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
+
 /////////////////////
 // Pin Definitions //
 /////////////////////
@@ -21,13 +30,6 @@ const int LED_RED = 0;
 const int LED_GREEN = 5;
 const int LED_BLUE = 4;
 const int BUTTON_PIN = 2;
-
-/////////////////////
-// IFTTT Definitions //
-/////////////////////
-const char* IFTTT_URL= "maker.ifttt.com";
-const char* IFTTT_KEY= "YOUR IFTTT_KEY";
-const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
 
 //////////////////////
 // Button Variables //
@@ -39,12 +41,14 @@ long DEBOUNCE_DELAY = 50;
 int BUTTON_COUNTER = 0;
 
 void setup() {
+  // Setup Pins
   initHardware();
+
+  // Connect to WiFi
   connectWiFi();
 
-  // Turn the status led Green when the WiFi has been connected
+  // Turn the status led Green after the WiFi has been connected
   digitalWrite(LED_GREEN, HIGH);
-
 }
 
 void loop() {
@@ -75,6 +79,7 @@ void initHardware()
   // Button
   pinMode(BUTTON_PIN, INPUT);
 
+  // Serial
   Serial.begin(115200);
 }
 
@@ -108,7 +113,6 @@ void triggerIFTTTEvent()
   // Build JSON data string
   String data = "";
   data = data + "\n" + "{\"value1\":\""+ value_1 +"\",\"value2\":\""+ value_2 +"\",\"value3\":\""+ value_3 + "\"}";
-  Serial.println(data);
 
   // Post the button press to IFTTT
   if (client.connect(IFTTT_URL, httpPort)) {
@@ -116,17 +120,29 @@ void triggerIFTTTEvent()
 
      // Sent HTTP POST Request with JSON data
      client.println("POST "+ url +" HTTP/1.1");
+     Serial.println("POST "+ url +" HTTP/1.1");
      client.println("Host: "+ String(IFTTT_URL));
+     Serial.println("Host: "+ String(IFTTT_URL));
      client.println("User-Agent: Arduino/1.0");
+     Serial.println("User-Agent: Arduino/1.0");
      client.print("Accept: *");
+     Serial.print("Accept: *");
      client.print("/");
+     Serial.print("/");
      client.println("*");
+     Serial.println("*");
      client.print("Content-Length: ");
+     Serial.print("Content-Length: ");
      client.println(data.length());
+     Serial.println(data.length());
      client.println("Content-Type: application/json");
+     Serial.println("Content-Type: application/json");
      client.println("Connection: close");
+     Serial.println("Connection: close");
      client.println();
+     Serial.println();
      client.println(data);
+     Serial.println(data);
   }
    // After a successful send turn the light back to green
    digitalWrite(LED_BLUE, LOW);
