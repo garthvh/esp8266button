@@ -9,6 +9,8 @@ I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing
 
 I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. Once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
 
+I still need to write some sleep code to be more efficient on battery use.
+
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Huzzah Assembly")
 
 The built in battery and charging circuit on the ESP8266 Thing really makes it easy to work with. I have not been able to get serial debugging output working with the thing.
