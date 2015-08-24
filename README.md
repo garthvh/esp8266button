@@ -11,6 +11,8 @@ I was able to program both with my [FTDI Friend](https://www.adafruit.com/produc
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Huzzah Assembly")
 
+The built in battery and charging circuit on the ESP8266 Thing really makes it easy to work with. I have not been able to get serial debugging output working with the thing.
+
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
 ## Setup
