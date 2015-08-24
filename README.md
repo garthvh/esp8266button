@@ -1,4 +1,4 @@
-# esp8266 IoT Button using IFTTT
+# esp8266 Dash Like IoT Button using IFTTT
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
