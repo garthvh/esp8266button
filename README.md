@@ -1,5 +1,17 @@
 # esp8266 IoT Button using IFTTT
-An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the IFTTT Maker Channel.  Posts JSON data to IFTTT Maker Channel event when the button is pressed.
+
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
+[Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
+
+An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the IFTTT Maker Channel (or any other http endpoint).  Posts JSON data to IFTTT Maker Channel event when the button is pressed.
+
+I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
+
+I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. Once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
+
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Huzzah Assembly")
+
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
 ## Setup
 Requires an arduino ide version > 1.6.4
@@ -10,8 +22,8 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 
 ### Adafruit Huzzah
 
-* Adafruit Huzzah
-* Arcade Button
+* [Adafruit Huzzah](https://www.adafruit.com/products/2471)
+* [Arcade Button](https://www.sparkfun.com/products/9339)
 * Standard RGB LCD
 * 4 M3 20MM Hex Screws
 * AAA Battery Pack
@@ -19,11 +31,11 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 
 ### Sparkfun Thing
 
-* Sparkfun Thing
-* Panel Mount Push Button
+* [Sparkfun Thing](https://www.sparkfun.com/products/13231)
+* [Panel Mount Push Button](https://www.adafruit.com/products/1504)
 * Standard Green LCD
 * 4 M3 20MM Hex Screws
-* 150MA LiPo Battery
+* [150 mAh LiPo Battery](https://www.adafruit.com/product/1317)
 * Male Jumper wires
 
 ## Configuration
@@ -44,7 +56,7 @@ At the top of the esp8266_iot_button.ino file you will need to replace the place
     const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
 
 ## Enclosure
-![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Enclosure Assembly")
+Using this awesome [Parametric and Customizable Project Enclosure](http://www.thingiverse.com/thing:155001) I made customized enclosures that fit the parts I was using for my buttons.
 
 ![Customized  Project Enclosure](http://garthvh.com/assets/img/esp8266/button_enclosure_green.jpg "Customized Project Enclosure")
 
