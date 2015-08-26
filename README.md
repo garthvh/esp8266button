@@ -13,7 +13,7 @@ I still need to write some sleep code to be more efficient on battery use.
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Huzzah Assembly")
 
-The built in battery and charging circuit on the ESP8266 Thing really makes it easy to work with. I have not been able to get serial debugging output working with the thing.
+The built in battery and charging circuit on the ESP8266 Thing really makes it easy to work with. By cutting the DTR trace on the bottom of the board and installing pins for a jumper I am able to program the thing with the jumper installed, and debug over serial with it removed.
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
@@ -65,3 +65,7 @@ Using this awesome [Parametric and Customizable Project Enclosure](http://www.th
 ![Customized  Project Enclosure](http://garthvh.com/assets/img/esp8266/button_enclosure_green.jpg "Customized Project Enclosure")
 
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:941755)
+
+## Requirements
+
+* [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino)
