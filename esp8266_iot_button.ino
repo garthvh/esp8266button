@@ -75,10 +75,8 @@ void initHardware()
   digitalWrite(LED_GREEN, LOW);
   pinMode(LED_BLUE, OUTPUT);
   digitalWrite(LED_BLUE, LOW);
-
   // Button
   pinMode(BUTTON_PIN, INPUT);
-
   // Serial
   Serial.begin(115200);
 }

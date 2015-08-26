@@ -54,6 +54,9 @@ void loop() {
   boolean pressed = debounce();
   if (pressed == true) {
     BUTTON_COUNTER++;
+    Serial.print("Trigger" + String(IFTTT_EVENT) + " Event Pressed ");
+    Serial.print(BUTTON_COUNTER);
+    Serial.println(" times");
     if(BUTTON_COUNTER > 1)
     {
       triggerIFTTTEvent();
@@ -63,10 +66,11 @@ void loop() {
 
 void initHardware()
 {
+  // Serial
+  Serial.begin(9600);
   // LEDS
   pinMode(LED_GREEN, OUTPUT);
   digitalWrite(LED_GREEN, LOW);
-
   // Button
   pinMode(BUTTON_PIN, INPUT);
 }
@@ -101,19 +105,31 @@ void triggerIFTTTEvent()
   // Post the button press to IFTTT
   if (client.connect(IFTTT_URL, httpPort)) {
 
-     // Sent HTTP POST Request with JSON data
-     client.println("POST "+ url +" HTTP/1.1");
-     client.println("Host: "+ String(IFTTT_URL));
-     client.println("User-Agent: Arduino/1.0");
-     client.print("Accept: *");
-     client.print("/");
-     client.println("*");
-     client.print("Content-Length: ");
-     client.println(data.length());
-     client.println("Content-Type: application/json");
-     client.println("Connection: close");
-     client.println();
-     client.println(data);
+    // Sent HTTP POST Request with JSON data
+    client.println("POST "+ url +" HTTP/1.1");
+    Serial.println("POST "+ url +" HTTP/1.1");
+    client.println("Host: "+ String(IFTTT_URL));
+    Serial.println("Host: "+ String(IFTTT_URL));
+    client.println("User-Agent: Arduino/1.0");
+    Serial.println("User-Agent: Arduino/1.0");
+    client.print("Accept: *");
+    Serial.print("Accept: *");
+    client.print("/");
+    Serial.print("/");
+    client.println("*");
+    Serial.println("*");
+    client.print("Content-Length: ");
+    Serial.print("Content-Length: ");
+    client.println(data.length());
+    Serial.println(data.length());
+    client.println("Content-Type: application/json");
+    Serial.println("Content-Type: application/json");
+    client.println("Connection: close");
+    Serial.println("Connection: close");
+    client.println();
+    Serial.println();
+    client.println(data);
+    Serial.println(data);
   }
    // After a successful send turn the light back to green
    digitalWrite(LED_GREEN, HIGH);
