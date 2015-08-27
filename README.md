@@ -17,6 +17,11 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
+Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266.
+
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/wifi_setup_1.png "WiFi Setup 1")
+
+![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/wifi_setup_2.png "WiFi Setup 2")
 ## Setup
 Requires an arduino ide version > 1.6.4
 
@@ -42,15 +47,16 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 * [150 mAh LiPo Battery](https://www.adafruit.com/product/1317)
 * Male Jumper wires
 
-## Configuration
+## Device Configuration
 
-At the top of the esp8266_iot_button.ino file you will need to replace the placeholder values with information on your WiFi SSID and Password, and your KEY and EVENT for IFTTT.
+At the top of the esp8266_iot_button_thing.ino file are the configureation options for the device you will need to replace the placeholder values with your KEY and EVENT for IFTTT.
 
-    //////////////////////
-    // WiFi Definitions //
-    //////////////////////
-    const char WIFI_SSID[] = "YOUR_SSID";
-    const char WIFI_PSK[] = "YOUR_PASSWORD";
+    ////////////////////////
+    // Device Definitions //
+    ////////////////////////
+    String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
+    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
+    boolean POWER_SAVE = false;
 
     ///////////////////////
     // IFTTT Definitions //
