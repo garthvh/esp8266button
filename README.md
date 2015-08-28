@@ -70,7 +70,7 @@ At the top of the esp8266_iot_button.ino file are the configuration options for 
 
 You will need to setup the IFTTT Maker Channel and two IFTTT recipes, one for the button event, and one for the notification that the webserver is up with WiFi SSID and IP address.
 
-![IFTTT Recipes](http://garthvh.com/assets/img/esp8266/ifttt_recipes_screenshots.png "IFTTT Recipes")
+![IFTTT Recipes](http://garthvh.com/assets/img/esp8266/ifttt_recipes_screenshot.png "IFTTT Recipes")
 
 ## Enclosure
 Using this awesome [Parametric and Customizable Project Enclosure](http://www.thingiverse.com/thing:155001) I made customized enclosures that fit the parts I was using for my buttons.
