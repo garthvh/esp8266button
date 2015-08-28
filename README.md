@@ -3,7 +3,7 @@
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
-An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the IFTTT Maker Channel (or any other http endpoint).  Posts JSON data to IFTTT Maker Channel event when the button is pressed.
+An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the IFTTT Maker Channel (or any other http endpoint).  Posts JSON data to an IFTTT Maker Channel event when the button is pressed.
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
@@ -17,7 +17,9 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
-Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266. I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific page for login when they connect and don't have internet (like you seen in hotels or guest networks) and by returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires. Once the device is connected a status page is available to check on your button and reset WiFi settings if necessary.
+Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266.
+
+I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific login page on the connecting router when they connect to a network and don't have internet (like you seen in hotels or guest networks). By returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires. Once the device is connected a status page is available to check on your button and reset WiFi settings if necessary.
 
 ![WiFi Setup](http://garthvh.com/assets/img/esp8266/wifi_setup_all.png "WiFi Setup")
 
