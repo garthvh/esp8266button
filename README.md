@@ -7,7 +7,7 @@ An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the 
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
-I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. Once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
+I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. If you have both boards once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
 
 I still need to write some sleep code to be more efficient on battery use.
 
@@ -17,11 +17,10 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
-Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266. I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific page for login when they connect and don't have internet (like you seen in hotels or guest networks) and by returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires.
+Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266. I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific page for login when they connect and don't have internet (like you seen in hotels or guest networks) and by returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires. Once the device is connected a status page is available to check on your button and reset WiFi settings if necessary.
 
-![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/wifi_setup_1.png "WiFi Setup 1")
+![WiFi Setup](http://garthvh.com/assets/img/esp8266/wifi_setup_all.png "WiFi Setup")
 
-![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/wifi_setup_2.png "WiFi Setup 2")
 ## Setup
 Requires an arduino ide version > 1.6.4
 
@@ -57,7 +56,7 @@ At the top of the esp8266_iot_button.ino file are the configuration options for 
     ////////////////////////
     String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
     boolean POWER_SAVE = false;
-    boolean RGB_LCD =false;
+    boolean RGB_LCD = false;
 
     ///////////////////////
     // IFTTT Definitions //
