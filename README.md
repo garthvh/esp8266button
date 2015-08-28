@@ -17,7 +17,7 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
-Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266.
+Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266. I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific page for login when they connect and don't have internet (like you seen in hotels or guest networks) and by returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires.
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/wifi_setup_1.png "WiFi Setup 1")
 
@@ -49,14 +49,15 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 
 ## Device Configuration
 
-At the top of the esp8266_iot_button_thing.ino file are the configureation options for the device you will need to replace the placeholder values with your KEY and EVENT for IFTTT.
+At the top of the esp8266_iot_button.ino file are the configuration options for the device. You will need to replace the placeholder values with your KEY and EVENT for IFTTT. You can create your own SSID name for configuration mode and you can optionally turn on a RGB LED.
 
+    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
     ////////////////////////
     // Device Definitions //
     ////////////////////////
     String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
-    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
     boolean POWER_SAVE = false;
+    boolean RGB_LCD =false;
 
     ///////////////////////
     // IFTTT Definitions //

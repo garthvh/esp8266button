@@ -1,6 +1,7 @@
 /*----------------------------------------------------------------------------
   Simple IoT button using the If This Then That(IFTTT) Maker Channel, Sparkfun
-  ESP8266 Thing, a standard Green LCD and a push button.
+  ESP8266 Thing or Adafruit Huzzah, a standard Green LED(or onboard green LED)
+  and a push button.  Optional RGB LED for more detailed status indicators
 
   While attempting to connect to the specified SSID the LCD flashes,
   when connected the led remains green, while data is sending the led turns
@@ -32,6 +33,7 @@ ESP8266WebServer WEB_SERVER(80);
 /////////////////////////
 String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
 boolean POWER_SAVE = false;
+boolean RGB_LCD =false;
 
 ///////////////////////
 // IFTTT Definitions //
@@ -44,6 +46,9 @@ const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
 // Pin Definitions //
 /////////////////////
 const int LED_GREEN = 5;
+// Blue and Red LED Pins if RGB LCD is enabled
+const int LED_RED = 0;
+const int LED_BLUE = 4;
 const int BUTTON_PIN = 0;
 
 //////////////////////
@@ -103,6 +108,12 @@ void initHardware()
   // LEDS
   pinMode(LED_GREEN, OUTPUT);
   digitalWrite(LED_GREEN, LOW);
+  if(RGB_LCD == true){
+    pinMode(LED_RED, OUTPUT);
+    digitalWrite(LED_RED, LOW);
+    pinMode(LED_BLUE, OUTPUT);
+    digitalWrite(LED_BLUE, LOW);
+  }
   // Button
   pinMode(BUTTON_PIN, INPUT);
 
@@ -115,6 +126,9 @@ void triggerButtonEvent()
 {
   // Turn off the Green LED  while transmitting.
   digitalWrite(LED_GREEN, LOW);
+  if(RGB_LCD == true){
+    digitalWrite(LED_BLUE, HIGH);
+  }
 
   // Define the WiFi Client
   WiFiClient client;
@@ -168,6 +182,9 @@ void triggerButtonEvent()
     Serial.println(data);
   }
    // After a successful send turn the light back to green
+   if(RGB_LCD == true){
+    digitalWrite(LED_BLUE, LOW);
+   }
    digitalWrite(LED_GREEN, HIGH);
 }
 
@@ -288,7 +305,7 @@ void startWebServer() {
     Serial.println(WiFi.localIP());
     WEB_SERVER.on("/", []() {
       String s = "<h1>Station Mode</h1><p><a href=\"/reset\">Reset Wi-Fi Settings</a></p>";
-      s += "<fieldset><legend>Button Details for " + String(IFTTT_EVENT) + "</legend></fieldset>";
+      s += "<fieldset><legend>Button Details for " + String(IFTTT_EVENT) + " Event</legend><p>Button Presses: " + String(BUTTON_COUNTER - 1) + "</p></fieldset>";
       WEB_SERVER.send(200, "text/html", makePage("Station mode", s));
     });
     WEB_SERVER.on("/reset", []() {
@@ -338,7 +355,7 @@ String makePage(String title, String contents) {
   // Basic CSS Styles
   s += "body{font-family:sans-serif;font-size:16px;font-size:1rem;line-height:22px;line-height:1.375rem;color:#585858;font-weight:400;background:#fff}p{margin:0 0 1em 0}a{color:#cd5c5c;background:transparent;text-decoration:underline}a:active,a:hover{outline:0;text-decoration:none}strong{font-weight:700}em{font-style:italic}h1{font-size:32px;font-size:2rem;line-height:38px;line-height:2.375rem;margin-top:0.7em;margin-bottom:0.5em;color:#343434;font-weight:400}fieldset,legend{border:0;margin:0;padding:0}legend{font-size:18px;font-size:1.125rem;line-height:24px;line-height:1.5rem;font-weight:700}label,button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}input{line-height:normal}.input{width:100%}input[type='text'],input[type='email'],input[type='tel'],input[type='date']{height:36px;padding:0 0.4em}input[type='checkbox'],input[type='radio']{box-sizing:border-box;padding:0}";
   // Custom CSS
-  s += "header{width:100%;background-color: #2c3e50;top: 0;min-height:60px;margin-bottom:21px;font-size:15px;color: #fff}.content-body{padding:0 1em 0 1em}header p{font-size: 1.25rem;float: left;position: relative;z-index: 1000;line-height: normal; margin: 15px 0 0 5px}";
+  s += "header{width:100%;background-color: #2c3e50;top: 0;min-height:60px;margin-bottom:21px;font-size:15px;color: #fff}.content-body{padding:0 1em 0 1em}header p{font-size: 1.25rem;float: left;position: relative;z-index: 1000;line-height: normal; margin: 15px 0 0 10px}";
   s += "</style>";
   s += "<title>";
   s += title;
