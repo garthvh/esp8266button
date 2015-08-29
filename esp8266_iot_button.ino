@@ -38,10 +38,10 @@ boolean RGB_LCD = true;
 ///////////////////////
 // IFTTT Definitions //
 ///////////////////////
-const char* IFTTT_URL= "maker.ifttt.com";
 const char* IFTTT_KEY= "YOUR IFTTT_KEY";
 const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
 const char* IFTTT_NOTIFICATION_EVENT = "YOUR_IFTTT_NOTIFICATION_EVENT";
+const char* IFTTT_NOTIFICATION_EVENT = "IOT_BUTTON_LIVE";
 
 /////////////////////
 // Pin Definitions //
@@ -308,7 +308,7 @@ void startWebServer() {
     });
     // Show the configuration page if no path is specified
     WEB_SERVER.onNotFound([]() {
-      String s = "<h1>Access Point WiFi Configuration Mode</h1><p><a href=\"/settings\">Wi-Fi Settings</a></p>";
+      String s = "<h1>WiFi Configuration Mode</h1><p><a href=\"/settings\">Wi-Fi Settings</a></p>";
       WEB_SERVER.send(200, "text/html", makePage("Access Point mode", s));
     });
   }
@@ -316,8 +316,15 @@ void startWebServer() {
     Serial.print("Starting Web Server at ");
     Serial.println(WiFi.localIP());
     WEB_SERVER.on("/", []() {
-      String s = "<h1>Station Mode</h1><p><a href=\"/reset\">Reset Wi-Fi Settings</a></p>";
-      s += "<fieldset><legend>Button Details for " + String(IFTTT_EVENT) + " Event</legend><p>Button Presses: " + String(BUTTON_COUNTER - 1) + "</p></fieldset>";
+      IPAddress ip = WiFi.localIP();
+      String ipStr = String(ip[0]) + '.' + String(ip[1]) + '.' + String(ip[2]) + '.' + String(ip[3]);
+      String s = "<h1>Button Connected to " + String(WiFi.SSID()) + "</h1>";
+      s += "<h3>Button Details</h3>";
+      s += "<p>Event Name: " + String(IFTTT_EVENT) + "</p>";
+      s += "<p>Button Presses: " + String(BUTTON_COUNTER - 1) + "</p>";
+      s += "<p>IP Address: " + ipStr + "</p>";
+      s += "<h3>Options</h3>";
+      s += "<p><a href=\"/reset\">Clear Saved Wi-Fi Settings</a></p>";
       WEB_SERVER.send(200, "text/html", makePage("Station mode", s));
     });
     WEB_SERVER.on("/reset", []() {
