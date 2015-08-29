@@ -300,7 +300,7 @@ void startWebServer() {
       }
       EEPROM.commit();
       Serial.println("Write EEPROM done!");
-      String s = "<h1>Setup complete.</h1><p>device will be connected to \"";
+      String s = "<h1>WiFi Setup complete.</h1><p>The button will be connected automatically to \"";
       s += ssid;
       s += "\" after the restart.";
       WEB_SERVER.send(200, "text/html", makePage("Wi-Fi Settings", s));
@@ -318,11 +318,13 @@ void startWebServer() {
     WEB_SERVER.on("/", []() {
       IPAddress ip = WiFi.localIP();
       String ipStr = String(ip[0]) + '.' + String(ip[1]) + '.' + String(ip[2]) + '.' + String(ip[3]);
-      String s = "<h1>Button Connected to " + String(WiFi.SSID()) + "</h1>";
+      String s = "<h1>IoT Button Status</h1>";
+      s += "<h3>Network Details</h3>";
+      s += "<p>Connected to: " + String(WiFi.SSID()) + "</p>";
+       s += "<p>IP Address: " + ipStr + "</p>";
       s += "<h3>Button Details</h3>";
       s += "<p>Event Name: " + String(IFTTT_EVENT) + "</p>";
       s += "<p>Button Presses: " + String(BUTTON_COUNTER - 1) + "</p>";
-      s += "<p>IP Address: " + ipStr + "</p>";
       s += "<h3>Options</h3>";
       s += "<p><a href=\"/reset\">Clear Saved Wi-Fi Settings</a></p>";
       WEB_SERVER.send(200, "text/html", makePage("Station mode", s));
