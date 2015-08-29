@@ -1,5 +1,7 @@
 # esp8266 Dash Like IoT Button using IFTTT
 
+[![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](http://www.firsttimersonly.com/)
+
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
@@ -7,7 +9,7 @@ An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the 
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
-I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. If you have both boards once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
+I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. Once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
 
 I still need to write some sleep code to be more efficient on battery use.
 
@@ -57,8 +59,8 @@ At the top of the esp8266_iot_button.ino file are the configuration options for 
     // Device Definitions //
     ////////////////////////
     String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
+    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
     boolean POWER_SAVE = false;
-    boolean RGB_LCD = false;
 
     ///////////////////////
     // IFTTT Definitions //
@@ -66,6 +68,13 @@ At the top of the esp8266_iot_button.ino file are the configuration options for 
     const char* IFTTT_URL= "maker.ifttt.com";
     const char* IFTTT_KEY= "YOUR IFTTT_KEY";
     const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
+    const char* IFTTT_NOTIFICATION_EVENT = "YOUR_IFTTT_NOTIFICATION_EVENT";
+
+## IFTTT Events
+
+You will need to setup the IFTTT Maker Channel and two IFTTT recipes, one for the button event, and one for the notification that the webserver is up with WiFi SSID and IP address.
+
+![IFTTT Recipes](http://garthvh.com/assets/img/esp8266/ifttt_recipes_screenshot.png "IFTTT Recipes")
 
 ## Enclosure
 Using this awesome [Parametric and Customizable Project Enclosure](http://www.thingiverse.com/thing:155001) I made customized enclosures that fit the parts I was using for my buttons.

@@ -41,6 +41,7 @@ boolean RGB_LCD = true;
 const char* IFTTT_URL= "maker.ifttt.com";
 const char* IFTTT_KEY= "YOUR IFTTT_KEY";
 const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
+const char* IFTTT_NOTIFICATION_EVENT = "YOUR_IFTTT_NOTIFICATION_EVENT";
 
 /////////////////////
 // Pin Definitions //
@@ -94,7 +95,17 @@ void loop() {
     Serial.println(" times");
     if(BUTTON_COUNTER > 1)
     {
-      triggerButtonEvent();
+      // Turn off the Green LED  while transmitting.
+      digitalWrite(LED_GREEN, LOW);
+      if(RGB_LCD == true){
+        digitalWrite(LED_BLUE, HIGH);
+      }
+      triggerButtonEvent(IFTTT_EVENT);
+      // After a successful send turn the light back to green
+      if(RGB_LCD == true){
+       digitalWrite(LED_BLUE, LOW);
+      }
+      digitalWrite(LED_GREEN, HIGH);
     }
   }
 }
@@ -122,14 +133,8 @@ void initHardware()
 //////////////////////
 // Button Functions //
 //////////////////////
-void triggerButtonEvent()
+void triggerButtonEvent(String eventName)
 {
-  // Turn off the Green LED  while transmitting.
-  digitalWrite(LED_GREEN, LOW);
-  if(RGB_LCD == true){
-    digitalWrite(LED_BLUE, HIGH);
-  }
-
   // Define the WiFi Client
   WiFiClient client;
   // Set the http Port
@@ -141,12 +146,24 @@ void triggerButtonEvent()
   }
 
   // We now create a URI for the request
-  String url = "/trigger/" + String(IFTTT_EVENT) + "/with/key/" + String(IFTTT_KEY);
+  String url = "/trigger/" + String(eventName) + "/with/key/" + String(IFTTT_KEY);
 
-  // Set some values for the JSON data
-  String value_1 = String(BUTTON_COUNTER -1);
-  String value_2 = String(WiFi.localIP());
-  String value_3 = String(WiFi.gatewayIP());
+  // Set some values for the JSON data depending on which event has been triggered
+  IPAddress ip = WiFi.localIP();
+  String ipStr = String(ip[0]) + '.' + String(ip[1]) + '.' + String(ip[2]) + '.' + String(ip[3]);
+  String value_1 = "";
+  String value_2 = "";
+  String value_3 = "";
+  if(eventName == IFTTT_EVENT){
+    value_1 = String(BUTTON_COUNTER -1);
+    value_2 = ipStr;
+    value_3 = String(WiFi.gatewayIP());
+  }
+  else if(eventName == IFTTT_NOTIFICATION_EVENT){
+    value_1 = ipStr;
+    value_2 = WiFi.SSID();
+  }
+
 
   // Build JSON data string
   String data = "";
@@ -181,11 +198,6 @@ void triggerButtonEvent()
     client.println(data);
     Serial.println(data);
   }
-   // After a successful send turn the light back to green
-   if(RGB_LCD == true){
-    digitalWrite(LED_BLUE, LOW);
-   }
-   digitalWrite(LED_GREEN, HIGH);
 }
 
 // Debounce Button Presses
@@ -318,6 +330,7 @@ void startWebServer() {
     });
   }
   WEB_SERVER.begin();
+  triggerButtonEvent(IFTTT_NOTIFICATION_EVENT);
 }
 
 // Build the SSID list and setup a software access point for setup mode
