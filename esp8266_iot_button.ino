@@ -38,10 +38,10 @@ boolean RGB_LCD = true;
 ///////////////////////
 // IFTTT Definitions //
 ///////////////////////
+const char* IFTTT_URL= "maker.ifttt.com";
 const char* IFTTT_KEY= "YOUR IFTTT_KEY";
 const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
 const char* IFTTT_NOTIFICATION_EVENT = "YOUR_IFTTT_NOTIFICATION_EVENT";
-const char* IFTTT_NOTIFICATION_EVENT = "IOT_BUTTON_LIVE";
 
 /////////////////////
 // Pin Definitions //
