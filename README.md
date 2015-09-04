@@ -1,4 +1,4 @@
-# esp8266 Dash Like IoT Button using IFTTT
+# esp8266 Dash Like IoT Button using IFTTT with Captive Portal WiFi Setup
 
 [![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](http://www.firsttimersonly.com/)
 
@@ -21,7 +21,7 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 Since flashing the device each time to configure WiFi was a pain I added some code that creates an Access Point and allows the user to configure the wireless network via their mobile device. I created a slimmed down version of [base css](http://getbase.org/) to style the pages served by the ESP8266.
 
-I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code. Mobile devices apparently try and hit some specific login page on the connecting router when they connect to a network and don't have internet (like you seen in hotels or guest networks). By returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires. Once the device is connected a status page is available to check on your button and reset WiFi settings if necessary.
+I used an interesting hack I ran across, it serves the WiFi configuration page for any requests that result in a 404(Not Found) HTTP code creating a captive portal (like you seen in hotels or guest networks). By returning the configuration page for 404 requests it allows easy configuration no matter what page your mobile device OS requires. Once the device is connected a status page is available to check on your button and reset WiFi settings if necessary. This works perfectly on iOS devices and has been hit or miss on Android.  On Android if the captive portal does not work automatically you can always hit the root IP of the access point to view the configuration page.
 
 ![WiFi Setup](http://garthvh.com/assets/img/esp8266/wifi_setup_all.png "WiFi Setup")
 
