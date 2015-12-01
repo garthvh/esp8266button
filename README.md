@@ -52,7 +52,7 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 
 ## Device Configuration
 
-At the top of the esp8266_iot_button.ino file are the configuration options for the device. You will need to replace the placeholder values with your KEY and EVENT for IFTTT. You can create your own SSID name for configuration mode and you can optionally turn on a RGB LED.
+At the top of the esp8266_iot_button.ino file are the configuration options for the device. You will need to replace the placeholder values with your KEY and EVENT for IFTTT. You can create your own SSID name for configuration mode and you can optionally turn on a RGB LCD.
 
     const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
     ////////////////////////
