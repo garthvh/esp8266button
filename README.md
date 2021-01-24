@@ -1,11 +1,9 @@
-# esp8266 Dash Like IoT Button using IFTTT with Captive Portal WiFi Setup
-
-[![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](http://www.firsttimersonly.com/)
+# esp8266 Dash Like IoT Button using Github Actions with Captive Portal WiFi Setup
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
-An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and the IFTTT Maker Channel (or any other http endpoint).  Posts JSON data to an IFTTT Maker Channel event when the button is pressed.
+An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and github actions.  Posts to a github actions endpoint which updates a comment on an issue specific to each button.
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
