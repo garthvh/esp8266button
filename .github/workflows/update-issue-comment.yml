@@ -1,0 +1,74 @@
+# This is a basic workflow that is manually triggered
+
+name: IoT Button Press Workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Button Name'
+        # Default value if no value is explicitly provided
+        default: 'Sparkfun Thing'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  createorupdatecomment:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Time
+      id: time
+      uses: nanzm/get-time-action@v1.1
+      with:
+        timeZone: 8
+        format: 'YYYY-MM-DD-HH-mm-ss'
+    - name: Usage
+      env:
+          IME: "${{ steps.time.outputs.time }}"
+      run: |
+          echo $TIME
+    - name: Find Comment
+      uses: peter-evans/find-comment@v1
+      id: fc
+      with:
+        issue-number: 1
+        comment-author: 'github-actions[bot]'
+        body-includes: The ${{ github.event.inputs.name }} button was pressed!
+
+    - name: Create comment
+      if: ${{ steps.fc.outputs.comment-id == 0 }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: 1
+        body: |
+          The ${{ github.event.inputs.name }} button was pressed!
+            - **Yay!** :sparkles:
+            - Pressed at: ${{ steps.time.outputs.time }}
+        reaction-type: "rocket"
+
+    - name: Update comment
+      if: ${{ steps.fc.outputs.comment-id != 0 }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        body: |
+         **Edit:** The ${{ github.event.inputs.name }} button was pressed again at ${{ steps.time.outputs.time }}!
+        reaction-type: "rocket"
+
+  # This workflow contains a single job called "greet"
+  greet:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: View context attributes
+      uses: actions/github-script@v3
+      with:
+        script: console.log(context)
