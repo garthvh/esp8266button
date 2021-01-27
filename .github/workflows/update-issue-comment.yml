@@ -37,17 +37,17 @@ jobs:
       uses: peter-evans/find-comment@v1
       id: fc
       with:
-        issue-number: 1
+        issue-number: 76
         comment-author: 'github-actions[bot]'
-        body-includes: The ${{ github.event.inputs.name }} button was pressed!
+        body-includes: The ${{ github.event.inputs.button_name  }} button was pressed!
 
     - name: Create comment
       if: ${{ steps.fc.outputs.comment-id == 0 }}
       uses: peter-evans/create-or-update-comment@v1
       with:
-        issue-number: 1
+        issue-number: 76
         body: |
-          The ${{ github.event.inputs.name }} button was pressed!
+          The ${{ github.event.inputs.button_name }} button was pressed!
             - **Yay!** :sparkles:
             - Pressed at: ${{ steps.time.outputs.time }}
         reaction-type: "rocket"
@@ -58,7 +58,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         body: |
-         **Edit:** The ${{ github.event.inputs.name }} button was pressed again at ${{ steps.time.outputs.time }}!
+         **Edit:** The ${{ github.event.inputs.button_name }} button was pressed again at ${{ steps.time.outputs.time }}!
         reaction-type: "rocket"
 
   # This workflow contains a single job called "greet"
@@ -72,3 +72,4 @@ jobs:
       uses: actions/github-script@v3
       with:
         script: console.log(context)
+    
