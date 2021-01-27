@@ -1,15 +1,15 @@
-# esp8266 Dash Like IoT Button using Github Actions with Captive Portal WiFi Setup
+# esp8266 IoT Button using Github Actions
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
-An IoT Button using an Adafruit Huzzah or Sparkfun Thing, a push button and github actions.  Posts to a github actions endpoint which updates a comment on an issue specific to each button.
+An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions.  Posts to a github actions endpoint which updates a comment on an issue specific to each button.
+
+
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
 I was able to program both with my [FTDI Friend](https://www.adafruit.com/product/284), you will need to cut the default RTS jumper on the back of the FTDI Friend (used by the Huzzah) and connect the DTR jumper to program the thing. Once cut it has been pretty easy to switch back and forth by soldering the jumpers as needed.
-
-I still need to write some sleep code to be more efficient on battery use.
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/button_assembly.jpg "Huzzah Assembly")
 
@@ -80,7 +80,3 @@ Using this awesome [Parametric and Customizable Project Enclosure](http://www.th
 ![Customized  Project Enclosure](http://garthvh.com/assets/img/esp8266/button_enclosure_green.jpg "Customized Project Enclosure")
 
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:941755)
-
-## Requirements
-
-* [Arduino core for ESP8266 WiFi chip](https://github.com/esp8266/Arduino)
