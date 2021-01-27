@@ -38,11 +38,6 @@ The built in battery and charging circuit on the ESP8266 Thing really makes it e
 
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing_circuit.jpg "Thing Assembly")
 
-## Setup
-Requires an arduino ide version > 1.6.4
-
-Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide)  to support the Huzzah breakout board.
-
 ## BOM
 
 ### Adafruit Huzzah
