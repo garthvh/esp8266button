@@ -7,6 +7,21 @@ An IoT Button using an ESP8266 WiFI microcontroller, a push button and github ac
 
 The github actions workflow is also in this repository and you can see the button presses on the issues i have created for each of my buttons.
 
+You will need the following settings in your arduino sketch:
+
+        // WiFi and GitHub Variables
+        const char* ssid = "YOUR_SSID"; // SSID For the WiFi network you want to connect to
+        const char* password = "YOUR_PSK"; // PSK For the WiFi network you want to connect to
+        const char* github_user = "YOUR_GITHUB_USERNAME"; // GitHub User for running action
+        const char* github_repo = "YOUR_GITHUB_REPO"; // GitHub Repo where action lives
+        const char* github_token = "YOUR_GITHUB_TOKEN"; // GitHub Authorization Token
+        const char* github_workflow_id = "YOUR_WORKFLOW_YML_FILE"; // Workflow YML file name
+        const char* host = "api.github.com"; // Server from which data is to be fetched
+        const int httpsPort = 443; // Default port for HTTPS 
+
+
+You will also need to copy the YML from the action in this repository and create a new issue where the comments from the button will go.  The issue number in the YML file should be updated to the number of the newly created issue.
+
 I originally built this project using the IFTTT maker channel sending text messages, and then switched to updating a github issue once text messages were no longer free.  Since IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. I want to replace my bespoke captive portal but have not found a plugin I like yet.
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.

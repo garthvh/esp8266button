@@ -10,12 +10,12 @@
 #include <WiFiClientSecure.h>
 
 // WiFi and GitHub Variables
-const char* ssid = "YOUR_SSID";
-const char* password = "YOUR_PSK";
+const char* ssid = "YOUR_SSID"; // SSID For the WiFi network you want to connect to
+const char* password = "YOUR_PSK"; // PSK For the WiFi network you want to connect to
 const char* github_user = "YOUR_GITHUB_USERNAME"; // GitHub User for running action
-const char* github_repo = "YOUR_GITHUB_REPO";
-const char* github_token = "YOUR_GITHUB_TOKEN";
-const char* github_workflow_id = "YOUR_WORKFLOW_ID";
+const char* github_repo = "YOUR_GITHUB_REPO"; // GitHub Repo where action lives
+const char* github_token = "YOUR_GITHUB_TOKEN"; // GitHub Authorization Token
+const char* github_workflow_id = "YOUR_WORKFLOW_YML_FILE"; // Workflow YML file name
 const char* host = "api.github.com"; // Server from which data is to be fetched
 const int httpsPort = 443; // Default port for HTTPS 
 
