@@ -157,7 +157,7 @@ void triggerButtonEvent(String eventName)
   if(eventName == IFTTT_EVENT){
     value_1 = String(BUTTON_COUNTER -1);
     value_2 = ipStr;
-    value_3 = String(WiFi.gatewayIP());
+    value_3 = WiFi.gatewayIP().toString();
   }
   else if(eventName == IFTTT_NOTIFICATION_EVENT){
     value_1 = ipStr;
