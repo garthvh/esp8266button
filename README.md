@@ -11,7 +11,7 @@ I originally built this project using the IFTTT maker channel sending text messa
 
 The github actions workflow YML file update-issue-comment.yml is also in this repository and you can see the button press comments on the issue i have created for my SparkFun Thing button.
 
-You will need the following settings in your arduino sketch:
+You will need the following settings in the arduino sketch <code>esp8266_iot_button_actions.ino</code>:
 
         // WiFi and GitHub Variables
         const char* ssid = "YOUR_SSID"; // SSID For the WiFi network you want to connect to
