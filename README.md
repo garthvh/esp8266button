@@ -5,9 +5,9 @@
 
 ## Software
 
-An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions. POSTS to a GitHub Actions Workflow dispatch event endpoint which updates a comment on an issue specific to each button.
+An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions. POSTS to a [GitHub Actions Workflow dispatch event]( https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event) endpoint which updates a comment on an issue specific to each button.
 
-I originally built this project using the IFTTT maker channel sending text messages, then switched to updating a github issue once text messages were no longer free.  Now that IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. This makes for a simpler demo anyways as the only service involved is GitHub. You can see the ReadMe with instructions from the original IFTTT project [here](https://github.com/garthvh/esp8266button/wiki/Original-IFTTT-Readme)
+I originally built this project using the IFTTT maker channel sending text messages, then switched to updating a github issue once text messages were no longer free.  Now that IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. This makes for a simpler demo anyways as the only service involved is GitHub and everything is stored in code. You can see the ReadMe with instructions from the original IFTTT project [here](https://github.com/garthvh/esp8266button/wiki/Original-IFTTT-Readme)
 
 The github actions workflow YML file update-issue-comment.yml is also in this repository and you can see the button press comments on the issue i have created for my SparkFun Thing button.
 
