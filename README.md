@@ -5,7 +5,7 @@
 
 An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions.  Posts to a github actions endpoint which updates a comment on an issue specific to each button.
 
-
+I originally built this project using the IFTTT maker channel sending text messages, and then switched to updating a github issue once text messages were no longer free.  Since IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. I want to replace my bespoke captive portal but have not found a plugin I like yet.
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
