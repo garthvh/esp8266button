@@ -48,31 +48,6 @@ Set up your [Arduino IDE board manager](https://learn.adafruit.com/adafruit-huzz
 * [150 mAh LiPo Battery](https://www.adafruit.com/product/1317)
 * Male Jumper wires
 
-## Device Configuration
-
-At the top of the esp8266_iot_button.ino file are the configuration options for the device. You will need to replace the placeholder values with your KEY and EVENT for IFTTT. You can create your own SSID name for configuration mode and you can optionally turn on a RGB LCD.
-
-    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
-    ////////////////////////
-    // Device Definitions //
-    ////////////////////////
-    String DEVICE_TITLE = "IFTTT ESP8266 Dash Like Button";
-    const char* AP_SSID = "ESP8266_IOT_BUTTON_SETUP";
-    boolean POWER_SAVE = false;
-
-    ///////////////////////
-    // IFTTT Definitions //
-    ///////////////////////
-    const char* IFTTT_URL= "maker.ifttt.com";
-    const char* IFTTT_KEY= "YOUR IFTTT_KEY";
-    const char* IFTTT_EVENT = "YOUR_IFTTT_EVENT";
-    const char* IFTTT_NOTIFICATION_EVENT = "YOUR_IFTTT_NOTIFICATION_EVENT";
-
-## IFTTT Events
-
-You will need to setup the IFTTT Maker Channel and two IFTTT recipes, one for the button event, and one for the notification that the webserver is up with WiFi SSID and IP address.
-
-![IFTTT Recipes](http://garthvh.com/assets/img/esp8266/ifttt_recipes_screenshot.png "IFTTT Recipes")
 
 ## Enclosure
 Using this awesome [Parametric and Customizable Project Enclosure](http://www.thingiverse.com/thing:155001) I made customized enclosures that fit the parts I was using for my buttons.
