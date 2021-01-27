@@ -3,9 +3,13 @@
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
-An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions.  Posts to a github actions endpoint which updates a comment on an issue specific to each button.
+## Software
 
-The github actions workflow is also in this repository and you can see the button presses on the issues i have created for each of my buttons.
+An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions. POSTS to a GitHub Actions Workflow dispatch event endpoint which updates a comment on an issue specific to each button.
+
+I originally built this project using the IFTTT maker channel sending text messages, then switched to updating a github issue once text messages were no longer free.  Now that IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. This makes for a simpler demo anyways as the only service involved is GitHub. You can see the ReadMe with instructions from the original IFTTT project [here](https://github.com/garthvh/esp8266button/wiki/Original-IFTTT-Readme)
+
+The github actions workflow YML file update-issue-comment.yml is also in this repository and you can see the button press comments on the issue i have created for my SparkFun Thing button.
 
 You will need the following settings in your arduino sketch:
 
@@ -22,7 +26,7 @@ You will need the following settings in your arduino sketch:
 
 You will also need to copy the YML from the action in this repository and create a new issue where the comments from the button will go.  The issue number in the YML file should be updated to the number of the newly created issue.
 
-I originally built this project using the IFTTT maker channel sending text messages, and then switched to updating a github issue once text messages were no longer free.  Since IFTTT itself is no longer free I wrote a third sketch using GitHub Actions. I want to replace my bespoke captive portal but have not found a plugin I like yet.
+## Hardware
 
 I soldered male pins on my Huzzah, and added female headers to my Sparkfun Thing. The thing did not come with any headers and male headers were included with the Huzzah.
 
