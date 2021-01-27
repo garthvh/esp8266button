@@ -124,7 +124,7 @@ void SendDispatch(){
     https.addHeader("Content-Type", "application/json");
     https.addHeader("Authorization", "token " + String(github_token));
     Serial.println("posting to the github api");
-    int httpCode = https.POST(data);a
+    int httpCode = https.POST(data);
     // httpCode will be negative on error
     if (httpCode > 0) {
       // HTTP header has been send and Server response header has been handled
