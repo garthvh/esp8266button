@@ -3,6 +3,8 @@
 ![Enclosure Assembly](http://garthvh.com/assets/img/esp8266/sparkfun_thing.jpg "Thing Enclosure")
 [Customized Project Enclosure - Thingiverse](http://www.thingiverse.com/thing:981124)
 
+Tested with Adafruit Huzzah, Sparkfun Thing and WEMOS D1 Mini
+
 ## Software
 
 An IoT Button using an ESP8266 WiFI microcontroller, a push button and github actions. POSTS to a [GitHub Actions Workflow dispatch event]( https://docs.github.com/en/rest/reference/actions#create-a-workflow-dispatch-event) endpoint which updates a comment on an issue specific to each button.
